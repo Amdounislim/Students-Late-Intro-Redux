@@ -1,23 +1,20 @@
-import logo from './logo.svg';
+import React from "react"
 import './App.css';
+import { useDispatch, useSelector } from "react-redux"
+import Counter from './Components/Counter';
+import { toggle } from "./Redux/actions/actionShow"
 
 function App() {
+
+  const dispatch = useDispatch()
+  const show = useSelector(state => state.reducerShow.show)
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>React Redux -- Workshop</h1>
+      <button onClick={() => dispatch(toggle())}>show</button>
+      {show ? <Counter /> : null}
+      {/* {show && <Counter />} */}
     </div>
   );
 }
